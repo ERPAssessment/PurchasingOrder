@@ -20,11 +20,6 @@
 
 	
 	<ItemGroup>
-    <Folder Include="Data\Interceptors\" />
-  </ItemGroup>
-
-	
-	<ItemGroup>
 	  <ProjectReference Include="..\PurchasingOrder.Application\PurchasingOrder.Application.csproj" />
 	</ItemGroup>
 
