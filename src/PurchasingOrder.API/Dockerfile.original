@@ -13,10 +13,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/PurchasingOrder.API/PurchasingOrder.API.csproj", "src/PurchasingOrder.API/"]
-COPY ["src/PurchasingOrder.Application/PurchasingOrder.Application.csproj", "src/PurchasingOrder.Application/"]
-COPY ["src/PurchasingOrder.Domain/PurchasingOrder.Domain.csproj", "src/PurchasingOrder.Domain/"]
-COPY ["src/PurchasingOrder.Infrastructure/PurchasingOrder.Infrastructure.csproj", "src/PurchasingOrder.Infrastructure/"]
-COPY ["src/PurchasingOrder.Shared/PurchasingOrder.Shared.csproj", "src/PurchasingOrder.Shared/"]
 RUN dotnet restore "./src/PurchasingOrder.API/PurchasingOrder.API.csproj"
 COPY . .
 WORKDIR "/src/src/PurchasingOrder.API"

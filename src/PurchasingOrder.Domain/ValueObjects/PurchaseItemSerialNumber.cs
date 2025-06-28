@@ -1,8 +1,8 @@
 ﻿namespace PurchasingOrder.Domain.ValueObjects;
 public record PurchaseItemSerialNumber : ValueObject
 {
-  public string Value { get; }
-  private PurchaseItemSerialNumber(string value) => Value = value;
+  public string SerialNumber { get; }
+  private PurchaseItemSerialNumber(string value) => SerialNumber = value;
   public static PurchaseItemSerialNumber Of(string value)
   {
     ArgumentNullException.ThrowIfNull(value);
@@ -16,6 +16,6 @@ public record PurchaseItemSerialNumber : ValueObject
 
   protected override IEnumerable<object> GetEqualityComponents()
   {
-    yield return Value;
+    yield return SerialNumber;
   }
 }

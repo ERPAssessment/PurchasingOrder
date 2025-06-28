@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.6" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.6" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PurchasingOrder.Domain\PurchasingOrder.Domain.csproj" />
+    <ProjectReference Include="..\PurchasingOrder.Shared\PurchasingOrder.Shared.csproj" />
   </ItemGroup>
 
 </Project>

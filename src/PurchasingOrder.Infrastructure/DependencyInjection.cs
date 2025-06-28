@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PurchasingOrder.Infrastructure.Data;
 
 namespace PurchasingOrder.Infrastructure;
 
@@ -14,11 +15,11 @@ public static class DependencyInjection
     //services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
     //services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
 
-    //services.AddDbContext<ApplicationDbContext>((sp, options) =>
-    //{
-    //  options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
-    //  options.UseSqlServer(connectionString);
-    //});
+    services.AddDbContext<ApplicationDbContext>((sp, options) =>
+    {
+      //options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
+      options.UseSqlServer(connectionString);
+    });
 
     //services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 

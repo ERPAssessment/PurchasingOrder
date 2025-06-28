@@ -1,17 +1,21 @@
 ﻿namespace PurchasingOrder.Domain.Models;
 public class PurchaseItem : Entity<PurchaseItemId>
 {
-  internal PurchaseItem(PurchaseOrderId orderId, PurchaseItemSerialNumber serialNumber, PurchaseItemCode code, Money price)
+  internal PurchaseItem(
+          PurchaseOrderId purchaseOrderId,
+          PurchaseItemSerialNumber purchaseItemSerialNumber,
+          PurchaseGoodId purchaseGoodId,
+          Money price)
   {
     Id = PurchaseItemId.Of(Guid.NewGuid());
-    OrderId = orderId;
-    SerialNumber = serialNumber;
-    Code = code;
+    PurchaseOrderId = purchaseOrderId;
+    PurchaseGoodId = purchaseGoodId;
+    PurchaseItemSerialNumber = purchaseItemSerialNumber;
     Price = price;
   }
 
-  public PurchaseOrderId OrderId { get; private set; } = default!;
-  public PurchaseItemSerialNumber SerialNumber { get; private set; } = default!;
-  public PurchaseItemCode Code { get; private set; } = default!;
+  public PurchaseOrderId PurchaseOrderId { get; private set; } = default!;
+  public PurchaseGoodId PurchaseGoodId { get; private set; } = default!;
+  public PurchaseItemSerialNumber PurchaseItemSerialNumber { get; private set; } = default!;
   public Money Price { get; private set; } = default!;
 }

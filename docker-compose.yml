@@ -1,0 +1,12 @@
+services:
+  
+  purchasingorderDB:
+    image: mcr.microsoft.com/mssql/server
+
+
+  purchasingorder.api:
+    image: ${DOCKER_REGISTRY-}purchasingorderapi
+    build:
+      context: .
+      dockerfile: src/PurchasingOrder.API/Dockerfile
+  
