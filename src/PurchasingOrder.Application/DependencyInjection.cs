@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PurchasingOrder.Shared.Behaviors;
+using PurchasingOrder.Shared.MassTransit;
 using System.Reflection;
 
 namespace PurchasingOrder.Application;
@@ -18,7 +19,7 @@ public static class DependencyInjection
     });
 
     //services.AddFeatureManagement();
-    //services.AddMessageBroker(configuration, Assembly.GetExecutingAssembly());
+    services.AddMessageBroker(configuration, Assembly.GetExecutingAssembly());
 
     return services;
   }

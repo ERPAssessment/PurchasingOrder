@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="PurchaseOrders\EventHandlers\Integration\" />
-    <Folder Include="PurchaseOrders\Queries\GetPurchaseOrders\" />
   </ItemGroup>
 
 </Project>

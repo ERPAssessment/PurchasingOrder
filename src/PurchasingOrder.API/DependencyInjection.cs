@@ -8,10 +8,8 @@ public static class DependencyInjection
 {
   public static IServiceCollection AddApiServices(this IServiceCollection services, IConfiguration configuration)
   {
-    services.AddControllers();
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
-
 
     services.AddCarter();
 
@@ -34,10 +32,7 @@ public static class DependencyInjection
 
     app.UseHttpsRedirection();
 
-    app.UseAuthorization();
-
-    app.MapControllers();
-
+    //app.UseAuthorization();
 
     app.MapCarter();
 

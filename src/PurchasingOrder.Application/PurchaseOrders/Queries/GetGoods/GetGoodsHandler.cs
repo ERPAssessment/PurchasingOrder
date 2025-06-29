@@ -4,14 +4,11 @@ using PurchasingOrder.Shared.Pagination;
 
 namespace PurchasingOrder.Application.PurchaseOrders.Queries.GetGoods;
 
-public class GetGoodsHandler(IApplicationDbContext dbContext)
+public class GetPurchaseOrdersHandler(IApplicationDbContext dbContext)
     : IQueryHandler<GetGoodsQuery, GetGoodsResult>
 {
   public async Task<GetGoodsResult> Handle(GetGoodsQuery query, CancellationToken cancellationToken)
   {
-    // get orders with pagination
-    // return result
-
     var pageIndex = query.PaginationRequest.PageIndex;
     var pageSize = query.PaginationRequest.PageSize;
 
