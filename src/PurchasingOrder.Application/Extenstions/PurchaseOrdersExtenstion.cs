@@ -4,7 +4,11 @@ public static class PurchaseOrdersExtenstion
 {
   public static IEnumerable<PurchaseOrderDTO> ToPurchaseOrdersDtoList(this IEnumerable<PurchaseOrder> ordersDB)
   {
-    return ordersDB.Select(order => new PurchaseOrderDTO(
+    return ordersDB.Select(order => order.ToPurchaseOrderDto());
+  }
+  public static PurchaseOrderDTO ToPurchaseOrderDto(this PurchaseOrder order)
+  {
+    return new PurchaseOrderDTO(
         Id: order.Id.Value,
         PONumber: order.PONumber.Value,
         IssuedDate: order.IssuedDate,
@@ -18,7 +22,7 @@ public static class PurchaseOrdersExtenstion
             SerialNumber: item.PurchaseItemSerialNumber.SerialNumber,
             Price: item.Price.Amount
         )).ToList()
-    ));
+    );
   }
 
 }

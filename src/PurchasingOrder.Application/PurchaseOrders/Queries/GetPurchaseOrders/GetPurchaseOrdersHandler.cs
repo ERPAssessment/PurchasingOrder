@@ -29,4 +29,3 @@ public class GetPurchaseOrdersHandler(IApplicationDbContext dbContext)
             orders.ToPurchaseOrdersDtoList()));
   }
 }
-

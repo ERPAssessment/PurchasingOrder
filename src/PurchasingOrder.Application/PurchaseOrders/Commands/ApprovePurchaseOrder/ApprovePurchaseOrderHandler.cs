@@ -23,7 +23,7 @@ internal class ApprovePurchaseOrderHandler(IApplicationDbContext dbContext) :
 
     if (order is null)
     {
-      throw new PurchaseOrderNotFoundException(Id);
+      throw new PurchaseOrderNotFoundException(Id.ToString());
     }
 
     order.Approve();

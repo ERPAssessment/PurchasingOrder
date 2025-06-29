@@ -3,7 +3,7 @@
 namespace PurchasingOrder.Application.Exceptions;
 public class PurchaseOrderNotFoundException : NotFoundException
 {
-  public PurchaseOrderNotFoundException(Guid id) : base("PurchaseOrder", id)
+  public PurchaseOrderNotFoundException(string id) : base("PurchaseOrder", id)
   {
   }
 }
