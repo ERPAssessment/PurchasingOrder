@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using PurchasingOrder.Domain.Events;
 
-namespace PurchasingOrder.Application.EventHandlers.Domain;
+namespace PurchasingOrder.Application.PurchaseOrders.EventHandlers.Domain;
 
 public class PurchaseOrderCreatedEventHandler
   (IPublishEndpoint publishEndpoint,
