@@ -1,6 +1,4 @@
-﻿using PurchasingOrder.Domain.Enums;
-
-namespace PurchasingOrder.Infrastructure.Data.Extensions;
+﻿namespace PurchasingOrder.Infrastructure.Data.Extensions;
 
 internal class InitialData
 {
@@ -17,12 +15,10 @@ internal class InitialData
   {
     get
     {
-      var purchaseOrder1 = PurchaseOrder.NewPurchaseOrder(
+      var purchaseOrder1 = PurchaseOrder.CreatePurchaseOrder(
           PurchaseOrderId.Of(Guid.NewGuid()),
           PurchaseOrderNumber.Of("PO_001"),
-          DateTime.UtcNow.AddDays(-10),
-          PurchaseOrderState.Draft,
-          PurchaseDocumentStatus.Active);
+          DateTime.UtcNow.AddDays(-10));
 
       purchaseOrder1.AddPurchaseItem(
           PurchaseItemSerialNumber.Of("ITEM_001"),
@@ -34,12 +30,10 @@ internal class InitialData
           PurchaseGoodId.Of(new Guid("b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e")),
           Money.Of(50));
 
-      var purchaseOrder2 = PurchaseOrder.NewPurchaseOrder(
+      var purchaseOrder2 = PurchaseOrder.CreatePurchaseOrder(
           PurchaseOrderId.Of(Guid.NewGuid()),
           PurchaseOrderNumber.Of("PO_002"),
-          DateTime.UtcNow.AddDays(-5),
-          PurchaseOrderState.Draft,
-          PurchaseDocumentStatus.Active);
+          DateTime.UtcNow.AddDays(-5));
 
       purchaseOrder2.AddPurchaseItem(
           PurchaseItemSerialNumber.Of("ITEM_003"),

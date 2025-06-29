@@ -15,33 +15,23 @@ public class PurchaseOrder : Aggregate<PurchaseOrderId>
     private set { }
   }
 
-  public static PurchaseOrder NewPurchaseOrder(
+  public static PurchaseOrder CreatePurchaseOrder(
         PurchaseOrderId id,
         PurchaseOrderNumber poNumber,
-        DateTime issuedDate,
-        PurchaseOrderState state,
-        PurchaseDocumentStatus status)
+        DateTime issuedDate)
   {
-    return new PurchaseOrder
+    var order = new PurchaseOrder
     {
       Id = id,
       PONumber = poNumber,
       IssuedDate = issuedDate,
-      DocumentState = state,
-      DocumentStatus = status
+      DocumentState = PurchaseOrderState.Created,
+      DocumentStatus = PurchaseDocumentStatus.Active
     };
-  }
 
-  public void Create()
-  {
-    if (DocumentStatus != PurchaseDocumentStatus.Active)
-      throw new DomainException("Cannot create a deactivated purchase order");
+    order.AddDomainEvent(new OrderCreatedEvent(order));
 
-    if (DocumentState != PurchaseOrderState.Draft)
-      throw new DomainException("Only New POs can be created.");
-
-    DocumentState = PurchaseOrderState.Created;
-    AddDomainEvent(new OrderCreatedEvent(this));
+    return order;
   }
 
   public void Approve()
@@ -104,7 +94,7 @@ public class PurchaseOrder : Aggregate<PurchaseOrderId>
     //if (_purchaseItems.Any(item => item.Good == good))
     //  throw new DomainException($"Item with code {good.Code} already exists in this purchase order");
 
-    var item = new PurchaseItem(this.Id, serialNumber, goodId, price);
+    var item = new PurchaseItem(Id, serialNumber, goodId, price);
     _purchaseItems.Add(item);
   }
 

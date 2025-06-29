@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PurchasingOrder.Application.Data;
 using PurchasingOrder.Infrastructure.Data;
 using PurchasingOrder.Infrastructure.Data.Interceptors;
 
@@ -23,7 +24,7 @@ public static class DependencyInjection
       options.UseSqlServer(connectionString);
     });
 
-    //services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+    services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 
     return services;
   }

@@ -16,4 +16,8 @@
     <ProjectReference Include="..\PurchasingOrder.Shared\PurchasingOrder.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="EventHandlers\Integration\" />
+  </ItemGroup>
+
 </Project>
