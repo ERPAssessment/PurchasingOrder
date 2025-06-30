@@ -1,7 +1,4 @@
-﻿
-using PurchasingOrder.Application.PurchaseOrders.Queries.GetPurchaseOrders;
-
-namespace PurchasingOrder.Application.PurchaseOrders.Commands.ApprovePurchaseOrder;
+﻿namespace PurchasingOrder.Application.PurchaseOrders.Queries.GetPurchaseOrderById;
 
 public class GetPurchaseOrderByIdValidator : AbstractValidator<GetPurchaseOrderByIdQuery>
 {

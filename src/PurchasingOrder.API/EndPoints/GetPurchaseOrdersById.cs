@@ -1,4 +1,4 @@
-﻿using PurchasingOrder.Application.PurchaseOrders.Queries.GetPurchaseOrders;
+﻿using PurchasingOrder.Application.PurchaseOrders.Queries.GetPurchaseOrderById;
 
 namespace PurchasingOrder.API.EndPoints;
 

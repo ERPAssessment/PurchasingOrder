@@ -1,4 +1,4 @@
-﻿namespace PurchasingOrder.Application.PurchaseOrders.Queries.GetPurchaseOrders;
+﻿namespace PurchasingOrder.Application.PurchaseOrders.Queries.GetPurchaseOrderById;
 
 public record GetPurchaseOrderByIdQuery(string Id)
     : IQuery<GetPurchaseOrderByIdResults>;

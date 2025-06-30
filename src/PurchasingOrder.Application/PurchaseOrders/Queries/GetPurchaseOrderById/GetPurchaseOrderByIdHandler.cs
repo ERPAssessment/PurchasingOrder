@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PurchasingOrder.Application.Extenstions;
 
-namespace PurchasingOrder.Application.PurchaseOrders.Queries.GetPurchaseOrders;
+namespace PurchasingOrder.Application.PurchaseOrders.Queries.GetPurchaseOrderById;
 
 public class GetPurchaseOrderByIdHandler(IApplicationDbContext dbContext)
     : IQueryHandler<GetPurchaseOrderByIdQuery, GetPurchaseOrderByIdResults>
