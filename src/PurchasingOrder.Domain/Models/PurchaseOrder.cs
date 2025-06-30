@@ -85,9 +85,6 @@ public class PurchaseOrder : Aggregate<PurchaseOrderId>
     if (DocumentStatus != PurchaseDocumentStatus.Active)
       throw new DomainException("Cannot add items to a deactivated purchase order");
 
-    if (DocumentState != PurchaseOrderState.Draft)
-      throw new DomainException($"Cannot add items when purchase order is in {DocumentState} state");
-
     if (_purchaseItems.Any(item => item.PurchaseItemSerialNumber == serialNumber))
       throw new DomainException($"Item with serial number {serialNumber} already exists in this purchase order");
 

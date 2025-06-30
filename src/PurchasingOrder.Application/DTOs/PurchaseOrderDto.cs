@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace PurchasingOrder.Application.DTOs;
+﻿namespace PurchasingOrder.Application.DTOs;
 
 public record PurchaseOrderDTO(
-  Guid Id,
-    string PONumber,
+    Guid Id,
     DateTime IssuedDate,
+    string PurchaseOrderNumber,
     string DocumentState,
     string DocumentStatus,
     decimal TotalPrice,

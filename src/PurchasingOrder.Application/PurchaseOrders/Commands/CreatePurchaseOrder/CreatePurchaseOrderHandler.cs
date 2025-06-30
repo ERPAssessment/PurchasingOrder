@@ -13,7 +13,7 @@ internal class CreatePurchaseOrderHandler(IApplicationDbContext dbContext) :
     return new CreatePurchaseOrderResult(order.Id.Value);
   }
 
-  private PurchaseOrder CreateNewOrder(PurchaseOrderDTO order)
+  private PurchaseOrder CreateNewOrder(CreatePurchaseOrderDto order)
   {
     var PO = PurchaseOrder.CreatePurchaseOrder(PurchaseOrderId.Of(Guid.NewGuid()),
                                              PurchaseOrderNumber.Of(Guid.NewGuid().ToString()), // Will be a generator

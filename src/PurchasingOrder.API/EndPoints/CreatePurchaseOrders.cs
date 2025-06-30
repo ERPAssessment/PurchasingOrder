@@ -3,7 +3,7 @@
 namespace PurchasingOrder.API.EndPoints;
 
 public record CreatePurchaseOrdersResponse(Guid Id);
-public record CreatePurchaseOrdersRequest(PurchaseOrderDTO POrder);
+public record CreatePurchaseOrdersRequest(CreatePurchaseOrderDto Order);
 
 public class CreatePurchaseOrders : ICarterModule
 {
@@ -17,7 +17,7 @@ public class CreatePurchaseOrders : ICarterModule
 
       var response = result.Adapt<CreatePurchaseOrdersResponse>();
 
-      return Results.Created($"/CreatePurchaseOrder/{response.Id}", response);
+      return Results.Created($"/GetPurchaseOrdersById/{response.Id}", response);
     })
            .WithName("CreatePurchaseOrder")
            .Produces<GetPurchaseGoodsResponse>(StatusCodes.Status200OK)

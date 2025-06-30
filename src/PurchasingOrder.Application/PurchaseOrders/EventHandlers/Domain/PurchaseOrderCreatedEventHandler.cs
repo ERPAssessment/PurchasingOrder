@@ -12,6 +12,7 @@ public class PurchaseOrderCreatedEventHandler
 {
   public Task Handle(OrderCreatedEvent notification, CancellationToken cancellationToken)
   {
-    throw new NotImplementedException();
+    return Task.CompletedTask;
+    //throw new NotImplementedException();
   }
 }

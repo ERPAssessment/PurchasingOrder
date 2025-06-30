@@ -1,7 +1,6 @@
-﻿using PurchasingOrder.Application.DTOs;
-namespace PurchasingOrder.Application.PurchaseOrders.Commands.CreatePurchaseOrder;
+﻿namespace PurchasingOrder.Application.PurchaseOrders.Commands.CreatePurchaseOrder;
 
-public record CreatePurchaseOrderCommand(PurchaseOrderDTO Order)
+public record CreatePurchaseOrderCommand(CreatePurchaseOrderDto Order)
     : ICommand<CreatePurchaseOrderResult>;
 
 public record CreatePurchaseOrderResult(Guid Id);

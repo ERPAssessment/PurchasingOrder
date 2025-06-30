@@ -10,7 +10,7 @@ public static class PurchaseOrdersExtenstion
   {
     return new PurchaseOrderDTO(
         Id: order.Id.Value,
-        PONumber: order.PONumber.Value,
+        PurchaseOrderNumber: order.PONumber.Value,
         IssuedDate: order.IssuedDate,
         DocumentState: order.DocumentState.ToString(),
         DocumentStatus: order.DocumentStatus.ToString(),
