@@ -1,6 +1,7 @@
 ﻿using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using PurchasingOrder.Shared.Exceptions.Handler;
+using Serilog;
 
 namespace PurchasingOrder.API;
 
@@ -17,6 +18,10 @@ public static class DependencyInjection
     services.AddHealthChecks()
         .AddSqlServer(configuration.GetConnectionString("Database")!);
 
+    Log.Logger = new LoggerConfiguration()
+        .MinimumLevel.Debug()
+        .WriteTo.Debug()
+        .CreateLogger();
 
     return services;
   }

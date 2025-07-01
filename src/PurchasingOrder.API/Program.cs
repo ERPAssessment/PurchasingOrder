@@ -2,6 +2,7 @@ using PurchasingOrder.API;
 using PurchasingOrder.Application;
 using PurchasingOrder.Infrastructure;
 using PurchasingOrder.Infrastructure.Data.Extensions;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services
     .AddInfrastructureServices(builder.Configuration)
     .AddApiServices(builder.Configuration);
 
+builder.Host.UseSerilog();
 
 var app = builder.Build();
 
