@@ -1,6 +1,4 @@
-﻿
-
-namespace PurchasingOrder.Application.PurchaseOrders.Commands.ApprovePurchaseOrder;
+﻿namespace PurchasingOrder.Application.PurchaseOrders.Commands.ApprovePurchaseOrder;
 
 internal class ApprovePurchaseOrderHandler(IApplicationDbContext dbContext) :
    ICommandHandler<ApprovePurchaseOrderCommand, ApprovePurchaseOrderResult>
