@@ -5,12 +5,19 @@ internal class CreatePurchaseOrderHandler(IApplicationDbContext dbContext) :
 {
   public async Task<CreatePurchaseOrderResult> Handle(CreatePurchaseOrderCommand request, CancellationToken cancellationToken)
   {
-    var order = CreateNewOrder(request.Order);
+    var orders = new List<PurchaseOrder>();
 
-    dbContext.PurchaseOrders.Add(order);
+    foreach (var orderDto in request.Orders)
+    {
+      var order = CreateNewOrder(orderDto);
+      orders.Add(order);
+    }
+
+    dbContext.PurchaseOrders.AddRange(orders);
     await dbContext.SaveChangesAsync(cancellationToken);
 
-    return new CreatePurchaseOrderResult(order.Id.Value);
+    var orderIds = orders.Select(o => o.Id.Value).ToList();
+    return new CreatePurchaseOrderResult(orderIds);
   }
 
   private PurchaseOrder CreateNewOrder(CreatePurchaseOrderDto order)
@@ -19,14 +26,12 @@ internal class CreatePurchaseOrderHandler(IApplicationDbContext dbContext) :
                                              PurchaseOrderNumber.Of(Guid.NewGuid().ToString()), // Will be a generator
                                              DateTime.UtcNow
                                              );
-
     foreach (var ItemDto in order.PurchaseItems)
     {
       PO.AddPurchaseItem(PurchaseItemSerialNumber.Of(Guid.NewGuid().ToString()),   // will be a generator
                          PurchaseGoodId.Of(ItemDto.PurchaseGoodId),
                          Money.Of(ItemDto.Price));
     }
-
     return PO;
   }
 }

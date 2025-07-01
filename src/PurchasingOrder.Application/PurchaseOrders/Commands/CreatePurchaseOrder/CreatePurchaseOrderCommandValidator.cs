@@ -4,6 +4,11 @@ public class CreatePurchaseOrderCommandValidator : AbstractValidator<CreatePurch
 {
   public CreatePurchaseOrderCommandValidator()
   {
-    RuleFor(x => x.Order.PurchaseItems).NotEmpty().WithMessage("Purchase Order Items should not be empty");
+    RuleFor(x => x.Orders).NotEmpty().WithMessage("Orders list should not be empty");
+
+    RuleForEach(x => x.Orders).ChildRules(order =>
+    {
+      order.RuleFor(o => o.PurchaseItems).NotEmpty().WithMessage("Purchase Order Items should not be empty");
+    });
   }
 }

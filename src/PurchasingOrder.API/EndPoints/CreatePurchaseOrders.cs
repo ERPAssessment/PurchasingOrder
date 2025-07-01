@@ -2,28 +2,25 @@
 
 namespace PurchasingOrder.API.EndPoints;
 
-public record CreatePurchaseOrdersResponse(Guid Id);
-public record CreatePurchaseOrdersRequest(CreatePurchaseOrderDto Order);
+public record CreatePurchaseOrdersResponse(List<Guid> OrderIds);
+public record CreatePurchaseOrdersRequest(List<CreatePurchaseOrderDto> Orders);
 
 public class CreatePurchaseOrders : ICarterModule
 {
   public void AddRoutes(IEndpointRouteBuilder app)
   {
-    app.MapPost("/CreatePurchaseOrder", async (CreatePurchaseOrdersRequest request, ISender sender) =>
+    app.MapPost("/CreatePurchaseOrders", async (CreatePurchaseOrdersRequest request, ISender sender) =>
     {
       var command = request.Adapt<CreatePurchaseOrderCommand>();
-
       var result = await sender.Send(command);
-
       var response = result.Adapt<CreatePurchaseOrdersResponse>();
-
-      return Results.Created($"/GetPurchaseOrdersById/{response.Id}", response);
+      return Results.Created($"/GetPurchaseOrders", response);
     })
-           .WithName("CreatePurchaseOrder")
-           .Produces<GetPurchaseGoodsResponse>(StatusCodes.Status200OK)
+           .WithName("CreatePurchaseOrders")
+           .Produces<CreatePurchaseOrdersResponse>(StatusCodes.Status201Created)
            .ProducesProblem(StatusCodes.Status400BadRequest)
            .ProducesProblem(StatusCodes.Status404NotFound)
-           .WithSummary("CreatePurchaseOrder")
-           .WithDescription("CreatePurchaseOrder");
+           .WithSummary("Create Purchase Orders")
+           .WithDescription("Create multiple purchase orders in a single request");
   }
 }

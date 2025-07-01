@@ -1,6 +1,6 @@
 ﻿namespace PurchasingOrder.Application.PurchaseOrders.Commands.CreatePurchaseOrder;
 
-public record CreatePurchaseOrderCommand(CreatePurchaseOrderDto Order)
+public record CreatePurchaseOrderCommand(List<CreatePurchaseOrderDto> Orders)
     : ICommand<CreatePurchaseOrderResult>;
 
-public record CreatePurchaseOrderResult(Guid Id);
+public record CreatePurchaseOrderResult(List<Guid> Id);
