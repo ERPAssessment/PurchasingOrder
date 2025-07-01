@@ -7,8 +7,19 @@ services:
       - SA_PASSWORD=StrongP@ssw0rd123
     restart: always
     ports:
-      - "1433:1433" 
+      - "1401:1433" 
   
+  messagebroker:
+    container_name: MqMessageBroker
+    hostname: erp-mq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
   purchasingorder.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development

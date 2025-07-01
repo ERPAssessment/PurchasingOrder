@@ -1,6 +1,7 @@
 ﻿using MassTransit;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using PurchasingOrder.Application.Extenstions;
 using PurchasingOrder.Domain.Events;
 
 namespace PurchasingOrder.Application.PurchaseOrders.EventHandlers.Domain;
@@ -10,9 +11,11 @@ public class PurchaseOrderApprovedEventHandler
    ILogger<PurchaseOrderApprovedEventHandler> logger)
     : INotificationHandler<OrderApprovedEvent>
 {
-  public Task Handle(OrderApprovedEvent notification, CancellationToken cancellationToken)
+  public async Task Handle(OrderApprovedEvent domainEvent, CancellationToken cancellationToken)
   {
-    return Task.CompletedTask;
-    //throw new NotImplementedException();
+    logger.LogInformation("Domain Event handled: {DomainEvent}", domainEvent.GetType().Name);
+
+    var orderApproved = domainEvent.Order.ToPurchaseOrderDto();
+    await publishEndpoint.Publish(orderApproved, cancellationToken);
   }
 }

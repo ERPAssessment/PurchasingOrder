@@ -10,9 +10,8 @@ public class PurchaseOrderCreatedEventHandler
    ILogger<PurchaseOrderCreatedEventHandler> logger)
     : INotificationHandler<OrderCreatedEvent>
 {
-  public Task Handle(OrderCreatedEvent notification, CancellationToken cancellationToken)
+  public Task Handle(OrderCreatedEvent domainEvent, CancellationToken cancellationToken)
   {
     return Task.CompletedTask;
-    //throw new NotImplementedException();
   }
 }
