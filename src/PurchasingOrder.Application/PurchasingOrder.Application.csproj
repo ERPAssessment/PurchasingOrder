@@ -23,4 +23,8 @@
     <Folder Include="PurchaseOrders\EventHandlers\Integration\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Exceptions\PurchaseOrderItemsCannotEmptyException.cs" />
+  </ItemGroup>
+
 </Project>

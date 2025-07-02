@@ -18,7 +18,11 @@ internal class InitialData
       var purchaseOrder1 = PurchaseOrder.CreatePurchaseOrder(
           PurchaseOrderId.Of(Guid.NewGuid()),
           PurchaseOrderNumber.Of("PO_001"),
-          DateTime.UtcNow.AddDays(-10));
+          DateTime.UtcNow.AddDays(-10),
+          PurchaseItemSerialNumber.Of("ITEM_000"),
+          PurchaseGoodId.Of(new Guid("c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f")),
+          Money.Of(953)
+  );
 
       purchaseOrder1.AddPurchaseItem(
           PurchaseItemSerialNumber.Of("ITEM_001"),
@@ -33,7 +37,10 @@ internal class InitialData
       var purchaseOrder2 = PurchaseOrder.CreatePurchaseOrder(
           PurchaseOrderId.Of(Guid.NewGuid()),
           PurchaseOrderNumber.Of("PO_002"),
-          DateTime.UtcNow.AddDays(-5));
+          DateTime.UtcNow.AddDays(-5),
+          PurchaseItemSerialNumber.Of("ITEM_005"),
+          PurchaseGoodId.Of(new Guid("b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e")),
+          Money.Of(123));
 
       purchaseOrder2.AddPurchaseItem(
           PurchaseItemSerialNumber.Of("ITEM_003"),
