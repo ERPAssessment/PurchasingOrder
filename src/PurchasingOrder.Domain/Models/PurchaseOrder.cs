@@ -49,7 +49,7 @@ public class PurchaseOrder : Aggregate<PurchaseOrderId>
   {
     CheckCanShip();
 
-    DocumentState = PurchaseOrderState.Shipped;
+    DocumentState = PurchaseOrderState.BeingShipped;
     AddDomainEvent(new OrderShippedEvent(this));
   }
 
