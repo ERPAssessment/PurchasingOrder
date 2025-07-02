@@ -2,7 +2,11 @@
 
 namespace PurchasingOrder.Application.PurchaseOrders.Commands.CreatePurchaseOrder;
 
-internal class CreatePurchaseOrderHandler(IWritePurchaseOrderRepository OrderRepository) :
+internal class CreatePurchaseOrderHandler(
+  IWritePurchaseOrderRepository OrderRepository,
+  IPurchaseItemSerialNumberGenerator SerialNumberGenerator,
+  IPurchaseOrderNumberGenerator PurchaseOrderNumberGenerator
+  ) :
    ICommandHandler<CreatePurchaseOrderCommand, CreatePurchaseOrderResult>
 {
   public async Task<CreatePurchaseOrderResult> Handle(CreatePurchaseOrderCommand request, CancellationToken cancellationToken)
@@ -11,7 +15,7 @@ internal class CreatePurchaseOrderHandler(IWritePurchaseOrderRepository OrderRep
 
     foreach (var orderDto in request.Orders)
     {
-      var order = CreateNewOrder(orderDto);
+      var order = await CreateNewOrder(orderDto);
       orders.Add(order);
     }
 
@@ -21,15 +25,15 @@ internal class CreatePurchaseOrderHandler(IWritePurchaseOrderRepository OrderRep
     return new CreatePurchaseOrderResult(orderIds);
   }
 
-  private PurchaseOrder CreateNewOrder(CreatePurchaseOrderDto order)
+  private async Task<PurchaseOrder> CreateNewOrder(CreatePurchaseOrderDto order)
   {
     var PO = PurchaseOrder.CreatePurchaseOrder(PurchaseOrderId.Of(Guid.NewGuid()),
-                                             PurchaseOrderNumber.Of(Guid.NewGuid().ToString()), // Will be a generator
-                                             DateTime.UtcNow
+                                               await PurchaseOrderNumberGenerator.Generate(),
+                                               DateTime.UtcNow
                                              );
     foreach (var ItemDto in order.PurchaseItems)
     {
-      PO.AddPurchaseItem(PurchaseItemSerialNumber.Of(Guid.NewGuid().ToString()),   // will be a generator
+      PO.AddPurchaseItem(SerialNumberGenerator.Generate(),
                          PurchaseGoodId.Of(ItemDto.PurchaseGoodId),
                          Money.Of(ItemDto.Price));
     }

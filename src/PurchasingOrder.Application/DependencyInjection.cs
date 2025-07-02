@@ -20,7 +20,6 @@ public static class DependencyInjection
     services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
 
-    //services.AddFeatureManagement();
     services.AddMessageBroker(configuration, Assembly.GetExecutingAssembly());
 
     return services;

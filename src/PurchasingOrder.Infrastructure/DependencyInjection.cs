@@ -1,10 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.FeatureManagement;
 using PurchasingOrder.Application.Data;
 using PurchasingOrder.Domain.Abstractions.Repositories.PurchaseGoodRepo;
 using PurchasingOrder.Domain.Abstractions.Repositories.PurchaseOrderRepo;
 using PurchasingOrder.Infrastructure.Data;
+using PurchasingOrder.Infrastructure.Data.Generators.OrderItem;
+using PurchasingOrder.Infrastructure.Data.Generators.OrderNumberGenerator;
 using PurchasingOrder.Infrastructure.Data.Interceptors;
 using PurchasingOrder.Infrastructure.Data.Repositories;
 
@@ -16,6 +19,8 @@ public static class DependencyInjection
          (this IServiceCollection services, IConfiguration configuration)
   {
     var connectionString = configuration.GetConnectionString("Database");
+
+    services.AddFeatureManagement();
 
     // Add services to the container.
     services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
@@ -31,6 +36,9 @@ public static class DependencyInjection
     services.AddScoped<IWritePurchaseOrderRepository, WritePurchaseOrderRepository>();
     services.AddScoped<IReadPurchaseOrderRepository, ReadPurchaseOrderRepository>();
     services.AddScoped<IReadPurchaseGoodRepository, ReadPurchaseGoodRepository>();
+
+    services.AddSingleton<IPurchaseItemSerialNumberGenerator, GuidPurchaseItemSerialNumberGenerator>();
+    services.AddScoped<IPurchaseOrderNumberGenerator, PurchaseOrderNumberGenerator>();
 
     return services;
   }
