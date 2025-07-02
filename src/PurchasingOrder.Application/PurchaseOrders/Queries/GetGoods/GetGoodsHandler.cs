@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PurchasingOrder.Application.Extenstions;
+﻿using PurchasingOrder.Application.Extenstions;
+using PurchasingOrder.Domain.Abstractions.Repositories.PurchaseGoodRepo;
 using PurchasingOrder.Shared.Pagination;
 
 namespace PurchasingOrder.Application.PurchaseOrders.Queries.GetGoods;
 
-public class GetPurchaseOrdersHandler(IApplicationDbContext dbContext)
+public class GetPurchaseOrdersHandler(IReadPurchaseGoodRepository PurchaseGoodRepository)
     : IQueryHandler<GetGoodsQuery, GetGoodsResult>
 {
   public async Task<GetGoodsResult> Handle(GetGoodsQuery query, CancellationToken cancellationToken)
@@ -12,13 +12,9 @@ public class GetPurchaseOrdersHandler(IApplicationDbContext dbContext)
     var pageIndex = query.PaginationRequest.PageIndex;
     var pageSize = query.PaginationRequest.PageSize;
 
-    var totalCount = await dbContext.PurchaseGoods.LongCountAsync(cancellationToken);
+    var totalCount = await PurchaseGoodRepository.GetTotalCountAsync(cancellationToken);
 
-    var goods = await dbContext.PurchaseGoods
-                   .OrderBy(o => o.Name)
-                   .Skip(pageSize * pageIndex)
-                   .Take(pageSize)
-                   .ToListAsync(cancellationToken);
+    var goods = await PurchaseGoodRepository.GetPagedGoodsAsync(pageIndex, pageSize, cancellationToken);
 
     return new GetGoodsResult(
         new PaginatedResult<PurchaseGoodDto>(

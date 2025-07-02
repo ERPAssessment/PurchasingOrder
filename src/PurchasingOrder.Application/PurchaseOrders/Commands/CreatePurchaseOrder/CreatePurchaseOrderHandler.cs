@@ -1,6 +1,8 @@
-﻿namespace PurchasingOrder.Application.PurchaseOrders.Commands.CreatePurchaseOrder;
+﻿using PurchasingOrder.Domain.Abstractions.Repositories.PurchaseOrderRepo;
 
-internal class CreatePurchaseOrderHandler(IApplicationDbContext dbContext) :
+namespace PurchasingOrder.Application.PurchaseOrders.Commands.CreatePurchaseOrder;
+
+internal class CreatePurchaseOrderHandler(IWritePurchaseOrderRepository OrderRepository) :
    ICommandHandler<CreatePurchaseOrderCommand, CreatePurchaseOrderResult>
 {
   public async Task<CreatePurchaseOrderResult> Handle(CreatePurchaseOrderCommand request, CancellationToken cancellationToken)
@@ -13,8 +15,7 @@ internal class CreatePurchaseOrderHandler(IApplicationDbContext dbContext) :
       orders.Add(order);
     }
 
-    dbContext.PurchaseOrders.AddRange(orders);
-    await dbContext.SaveChangesAsync(cancellationToken);
+    await OrderRepository.Add(orders, cancellationToken);
 
     var orderIds = orders.Select(o => o.Id.Value).ToList();
     return new CreatePurchaseOrderResult(orderIds);

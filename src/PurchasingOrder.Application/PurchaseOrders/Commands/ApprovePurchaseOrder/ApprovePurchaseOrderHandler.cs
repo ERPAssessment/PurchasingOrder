@@ -1,14 +1,15 @@
-﻿namespace PurchasingOrder.Application.PurchaseOrders.Commands.ApprovePurchaseOrder;
+﻿using PurchasingOrder.Domain.Abstractions.Repositories.PurchaseOrderRepo;
 
-internal class ApprovePurchaseOrderHandler(IApplicationDbContext dbContext) :
+namespace PurchasingOrder.Application.PurchaseOrders.Commands.ApprovePurchaseOrder;
+
+internal class ApprovePurchaseOrderHandler(IWritePurchaseOrderRepository OrderRepository) :
    ICommandHandler<ApprovePurchaseOrderCommand, ApprovePurchaseOrderResult>
 {
   public async Task<ApprovePurchaseOrderResult> Handle(ApprovePurchaseOrderCommand request, CancellationToken cancellationToken)
   {
     PurchaseOrder order = await ApproveOrder(request.Id, cancellationToken);
 
-    dbContext.PurchaseOrders.Update(order);
-    await dbContext.SaveChangesAsync(cancellationToken);
+    await OrderRepository.Update(order, cancellationToken);
 
     return new ApprovePurchaseOrderResult(true);
   }
@@ -16,8 +17,8 @@ internal class ApprovePurchaseOrderHandler(IApplicationDbContext dbContext) :
   private async Task<PurchaseOrder> ApproveOrder(Guid Id, CancellationToken cancellationToken)
   {
     var orderId = PurchaseOrderId.Of(Id);
-    var order = await dbContext.PurchaseOrders
-        .FindAsync([orderId], cancellationToken: cancellationToken);
+
+    var order = await OrderRepository.GetById(orderId, cancellationToken);
 
     if (order is null)
     {

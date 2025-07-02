@@ -2,8 +2,11 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PurchasingOrder.Application.Data;
+using PurchasingOrder.Domain.Abstractions.Repositories.PurchaseGoodRepo;
+using PurchasingOrder.Domain.Abstractions.Repositories.PurchaseOrderRepo;
 using PurchasingOrder.Infrastructure.Data;
 using PurchasingOrder.Infrastructure.Data.Interceptors;
+using PurchasingOrder.Infrastructure.Data.Repositories;
 
 namespace PurchasingOrder.Infrastructure;
 
@@ -25,6 +28,9 @@ public static class DependencyInjection
     });
 
     services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+    services.AddScoped<IWritePurchaseOrderRepository, WritePurchaseOrderRepository>();
+    services.AddScoped<IReadPurchaseOrderRepository, ReadPurchaseOrderRepository>();
+    services.AddScoped<IReadPurchaseGoodRepository, ReadPurchaseGoodRepository>();
 
     return services;
   }

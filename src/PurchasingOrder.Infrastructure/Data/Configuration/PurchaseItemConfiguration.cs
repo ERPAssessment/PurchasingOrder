@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace PurchasingOrder.Infrastructure.Data.Configuration;
 
@@ -10,6 +9,9 @@ public class PurchaseItemConfiguration : IEntityTypeConfiguration<PurchaseItem>
     builder.HasKey(po => po.Id);
     builder.Property(po => po.Id).HasConversion(po => po.Value,
                                                 dbID => PurchaseItemId.Of(dbID));
+
+    builder.Property(pi => pi.PurchaseOrderId)
+           .HasConversion(po => po.Value, dbID => PurchaseOrderId.Of(dbID));
 
     builder.HasOne<PurchaseGood>()
             .WithMany()

@@ -16,4 +16,27 @@ public record Money : ValueObject
   {
     yield return Amount;
   }
+
+  public static bool operator >=(Money left, Money right)
+  {
+    if (left is null)
+      return right is null;
+
+    if (right is null)
+      return true;
+
+    return left.Amount >= right.Amount;
+  }
+
+  public static bool operator <=(Money left, Money right)
+  {
+    if (left is null)
+      return true;
+
+    if (right is null)
+      return false;
+
+    return left.Amount <= right.Amount;
+  }
+
 }

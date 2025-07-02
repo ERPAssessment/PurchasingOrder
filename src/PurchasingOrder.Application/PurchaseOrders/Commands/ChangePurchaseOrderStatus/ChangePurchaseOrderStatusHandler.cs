@@ -1,23 +1,24 @@
-﻿namespace PurchasingOrder.Application.PurchaseOrders.Commands.ChangePurchaseOrderStatus;
+﻿using PurchasingOrder.Domain.Abstractions.Repositories.PurchaseOrderRepo;
 
-internal class ChangePurchaseOrderStatusHandler(IApplicationDbContext dbContext) :
+namespace PurchasingOrder.Application.PurchaseOrders.Commands.ChangePurchaseOrderStatus;
+
+internal class ChangePurchaseOrderStatusHandler(IWritePurchaseOrderRepository OrderRepository) :
    ICommandHandler<ChangePurchaseOrderStatusCommand, ChangePurchaseOrderStatusResult>
 {
   public async Task<ChangePurchaseOrderStatusResult> Handle(ChangePurchaseOrderStatusCommand request, CancellationToken cancellationToken)
   {
-    PurchaseOrder order = await ApproveOrder(request.PurchaseOrderStatus, cancellationToken);
+    PurchaseOrder order = await ChangeOrderStatus(request.PurchaseOrderStatus, cancellationToken);
 
-    dbContext.PurchaseOrders.Update(order);
-    await dbContext.SaveChangesAsync(cancellationToken);
+    await OrderRepository.Update(order, cancellationToken);
 
     return new ChangePurchaseOrderStatusResult(true);
   }
 
-  private async Task<PurchaseOrder> ApproveOrder(ChangePurchaseOrderStatusDto Dto, CancellationToken cancellationToken)
+  private async Task<PurchaseOrder> ChangeOrderStatus(ChangePurchaseOrderStatusDto Dto, CancellationToken cancellationToken)
   {
     var orderId = PurchaseOrderId.Of(Dto.PurchaseOrderId);
-    var order = await dbContext.PurchaseOrders
-        .FindAsync([orderId], cancellationToken: cancellationToken);
+
+    var order = await OrderRepository.GetById(orderId, cancellationToken);
 
     if (order is null)
     {

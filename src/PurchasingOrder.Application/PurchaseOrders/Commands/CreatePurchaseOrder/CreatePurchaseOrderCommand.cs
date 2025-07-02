@@ -3,4 +3,4 @@
 public record CreatePurchaseOrderCommand(List<CreatePurchaseOrderDto> Orders)
     : ICommand<CreatePurchaseOrderResult>;
 
-public record CreatePurchaseOrderResult(List<Guid> Id);
+public record CreatePurchaseOrderResult(List<Guid> OrderIds);
