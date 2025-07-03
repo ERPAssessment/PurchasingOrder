@@ -2,9 +2,9 @@
 
 namespace PurchasingOrder.API.EndPoints;
 
-public record GetPurchaseOrdersByIdResponse(PurchaseOrderDTO Order);
+public record GetPurchaseOrderByIdResponse(PurchaseOrderDTO Order);
 
-public class GetPurchaseOrdersById : ICarterModule
+public class GetPurchaseOrderById : ICarterModule
 {
   public void AddRoutes(IEndpointRouteBuilder app)
   {
@@ -12,15 +12,15 @@ public class GetPurchaseOrdersById : ICarterModule
     {
       var result = await sender.Send(new GetPurchaseOrderByIdQuery(Id));
 
-      var response = result.Adapt<GetPurchaseOrdersByIdResponse>();
+      var response = result.Adapt<GetPurchaseOrderByIdResponse>();
 
       return Results.Ok(response);
     })
-           .WithName("GetPurchaseOrdersById")
-           .Produces<GetPurchaseOrdersByIdResponse>(StatusCodes.Status200OK)
+           .WithName("GetPurchaseOrderById")
+           .Produces<GetPurchaseOrderByIdResponse>(StatusCodes.Status200OK)
            .ProducesProblem(StatusCodes.Status400BadRequest)
            .ProducesProblem(StatusCodes.Status404NotFound)
-           .WithSummary("GetPurchaseOrdersById")
-           .WithDescription("GetPurchaseOrdersById");
+           .WithSummary("GetPurchaseOrderById")
+           .WithDescription("GetPurchaseOrderById");
   }
 }

@@ -17,7 +17,7 @@ public class ApprovePurchaseOrder : ICarterModule
 
       var response = result.Adapt<ApprovePurchaseOrderResponse>();
 
-      return Results.Created($"/GetPurchaseOrdersById/{request.Id}", response);
+      return Results.Created($"/GetPurchaseOrderById/{request.Id}", response);
     })
            .WithName("ApprovePurchaseOrder")
            .Produces<GetPurchaseGoodsResponse>(StatusCodes.Status200OK)

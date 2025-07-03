@@ -8,11 +8,7 @@ public class PurchaseOrder : Aggregate<PurchaseOrderId>
   public DateTime IssuedDate { get; private set; } = default!;
   public PurchaseOrderState DocumentState { get; private set; } = PurchaseOrderState.Draft;
   public PurchaseDocumentStatus DocumentStatus { get; private set; } = PurchaseDocumentStatus.Active;
-  public Money TotalPrice
-  {
-    get => Money.Of(PurchaseItems.Sum(x => x.Price.Amount));
-    private set { }
-  }
+  public Money TotalPrice => Money.Of(PurchaseItems.Sum(x => x.Price.Amount));
 
   // Create Purchase Order with at least one item.
   public static PurchaseOrder CreatePurchaseOrder(

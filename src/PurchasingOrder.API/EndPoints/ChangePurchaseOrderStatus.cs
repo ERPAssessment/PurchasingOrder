@@ -17,7 +17,7 @@ public class ChangePurchaseOrderStatus : ICarterModule
 
       var response = result.Adapt<ChangePurchaseOrderStatusResponse>();
 
-      return Results.Created($"/GetPurchaseOrdersById/{request.PurchaseOrderStatus.PurchaseOrderId}", response);
+      return Results.Created($"/GetPurchaseOrderById/{request.PurchaseOrderStatus.PurchaseOrderId}", response);
     })
            .WithName("ChangePurchaseOrderStatus")
            .Produces<ChangePurchaseOrderStatusResponse>(StatusCodes.Status200OK)

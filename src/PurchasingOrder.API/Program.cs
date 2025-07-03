@@ -16,7 +16,6 @@ builder.Host.UseSerilog();
 
 var app = builder.Build();
 
-
 app.UseApiServices();
 
 if (app.Environment.IsDevelopment())
