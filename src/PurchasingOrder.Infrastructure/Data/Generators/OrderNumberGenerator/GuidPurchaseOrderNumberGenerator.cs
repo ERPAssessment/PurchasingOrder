@@ -1,4 +1,4 @@
-﻿namespace PurchasingOrder.Infrastructure.Data.Generators;
+﻿namespace PurchasingOrder.Infrastructure.Data.Generators.OrderNumberGenerator;
 
 internal static class GuidPurchaseOrderNumberGenerator
 {
