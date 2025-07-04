@@ -1,6 +1,4 @@
-﻿using ERP.Shared.CQRS;
-
-namespace PurchasingOrder.Application.PurchaseOrders.Commands.ChangePurchaseOrderStatus;
+﻿namespace PurchasingOrder.Application.PurchaseOrders.Commands.ChangePurchaseOrderStatus;
 
 public record ChangePurchaseOrderStatusCommand(ChangePurchaseOrderStatusDto PurchaseOrderStatus)
     : ICommand<ChangePurchaseOrderStatusResult>;

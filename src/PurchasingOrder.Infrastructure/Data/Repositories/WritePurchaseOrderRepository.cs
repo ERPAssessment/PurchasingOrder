@@ -22,6 +22,12 @@ internal class WritePurchaseOrderRepository
     return order;
   }
 
+  public async Task<PurchaseOrder?> GetByPurchaseNumber(PurchaseOrderNumber PoNumber, CancellationToken cancellationToken)
+  {
+    return await dbContext.PurchaseOrders
+            .FirstOrDefaultAsync(po => po.PONumber == PoNumber, cancellationToken);
+  }
+
   public async Task<PurchaseOrder> Update(PurchaseOrder purchaseOrder, CancellationToken cancellationToken)
   {
     dbContext.PurchaseOrders.Update(purchaseOrder);

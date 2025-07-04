@@ -12,6 +12,8 @@ public class PurchaseOrderCreatedEventHandler
 {
   public Task Handle(OrderCreatedEvent domainEvent, CancellationToken cancellationToken)
   {
+    _ = publishEndpoint;
+    logger.LogInformation("Domain Event handled: {DomainEvent}", domainEvent.GetType().Name);
     return Task.CompletedTask;
   }
 }

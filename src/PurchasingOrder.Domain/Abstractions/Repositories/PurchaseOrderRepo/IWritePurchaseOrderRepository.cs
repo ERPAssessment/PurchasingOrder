@@ -5,4 +5,6 @@ public interface IWritePurchaseOrderRepository
   Task<IEnumerable<PurchaseOrder>> Add(IEnumerable<PurchaseOrder> purchaseOrders, CancellationToken cancellationToken);
   Task<PurchaseOrder> Update(PurchaseOrder purchaseOrder, CancellationToken cancellationToken);
   Task<PurchaseOrder?> GetById(PurchaseOrderId Id, CancellationToken cancellationToken);
+  Task<PurchaseOrder?> GetByPurchaseNumber(PurchaseOrderNumber PoNumber, CancellationToken cancellationToken);
+
 }

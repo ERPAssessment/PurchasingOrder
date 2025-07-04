@@ -96,7 +96,7 @@ public class PurchaseOrder : Aggregate<PurchaseOrderId>
   {
     CheckIsActivePurchaseOrder("Cannot ship a deactivated purchase order");
 
-    if (DocumentState != PurchaseOrderState.Closed)
+    if (DocumentState != PurchaseOrderState.BeingShipped)
       throw new DomainException("Only Shipped POs can be closed.");
   }
 
