@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PurchasingOrder.Application
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PurchasingOrder.API", "src\PurchasingOrder.API\PurchasingOrder.API.csproj", "{749D2E32-839F-4328-9C12-A2A55BBBEFA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PurchasingOrder.Shared", "src\PurchasingOrder.Shared\PurchasingOrder.Shared.csproj", "{EE23A778-BC5F-457F-9ECA-6127108675AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Shared", "src\ERP.Shared\ERP.Shared.csproj", "{EE23A778-BC5F-457F-9ECA-6127108675AD}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{ECFF62BE-F5B6-4FAE-92C1-CF273AF784B4}"
 EndProject

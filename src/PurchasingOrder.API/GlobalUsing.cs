@@ -1,5 +1,5 @@
 ﻿global using Carter;
+global using ERP.Shared.Pagination;
 global using Mapster;
 global using MediatR;
 global using PurchasingOrder.Application.DTOs;
-global using PurchasingOrder.Shared.Pagination;

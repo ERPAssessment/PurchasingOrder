@@ -29,7 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PurchasingOrder.Application\PurchasingOrder.Application.csproj" />
     <ProjectReference Include="..\PurchasingOrder.Infrastructure\PurchasingOrder.Infrastructure.csproj" />
-    <ProjectReference Include="..\PurchasingOrder.Shared\PurchasingOrder.Shared.csproj" />
+    <ProjectReference Include="..\ERP.Shared\ERP.Shared.csproj" />
   </ItemGroup>
 
 </Project>

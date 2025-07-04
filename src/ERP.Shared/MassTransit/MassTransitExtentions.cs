@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace PurchasingOrder.Shared.MassTransit;
+namespace ERP.Shared.MassTransit;
 
 public static class MassTransitExtentions
 {

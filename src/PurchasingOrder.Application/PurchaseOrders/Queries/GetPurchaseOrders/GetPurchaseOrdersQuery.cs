@@ -1,4 +1,5 @@
-﻿using PurchasingOrder.Shared.Pagination;
+﻿using ERP.Shared.CQRS;
+using ERP.Shared.Pagination;
 
 namespace PurchasingOrder.Application.PurchaseOrders.Queries.GetPurchaseOrders;
 

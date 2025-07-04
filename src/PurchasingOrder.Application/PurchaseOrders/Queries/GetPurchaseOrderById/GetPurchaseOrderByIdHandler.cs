@@ -1,4 +1,5 @@
-﻿using PurchasingOrder.Application.Extenstions;
+﻿using ERP.Shared.CQRS;
+using PurchasingOrder.Application.Extenstions;
 using PurchasingOrder.Domain.Abstractions.Repositories.PurchaseOrderRepo;
 
 namespace PurchasingOrder.Application.PurchaseOrders.Queries.GetPurchaseOrderById;

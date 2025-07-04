@@ -1,4 +1,6 @@
 ﻿
+using ERP.Shared.CQRS;
+
 namespace PurchasingOrder.Application.PurchaseOrders.Commands.ApprovePurchaseOrder;
 
 public record ApprovePurchaseOrderCommand(Guid Id)

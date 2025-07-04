@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using ERP.Shared.Behaviors;
+using ERP.Shared.MassTransit;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PurchasingOrder.Shared.Behaviors;
-using PurchasingOrder.Shared.MassTransit;
 using System.Reflection;
 
 namespace PurchasingOrder.Application;

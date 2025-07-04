@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace PurchasingOrder.Shared.CQRS;
+namespace ERP.Shared.CQRS;
 
 public interface ICommand : ICommand<Unit>
 {

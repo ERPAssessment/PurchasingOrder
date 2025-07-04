@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PurchasingOrder.Domain\PurchasingOrder.Domain.csproj" />
-    <ProjectReference Include="..\PurchasingOrder.Shared\PurchasingOrder.Shared.csproj" />
+    <ProjectReference Include="..\ERP.Shared\ERP.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

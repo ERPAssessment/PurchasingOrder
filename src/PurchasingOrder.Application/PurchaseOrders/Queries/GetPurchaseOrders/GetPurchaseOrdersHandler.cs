@@ -1,9 +1,9 @@
-﻿using PurchasingOrder.Application.Extenstions;
+﻿using ERP.Shared.Pagination;
+using PurchasingOrder.Application.Extenstions;
 using PurchasingOrder.Domain.Abstractions.Repositories.PurchaseOrderRepo;
 using PurchasingOrder.Domain.Enums;
 using PurchasingOrder.Domain.Specifications.PurchaseOrderSpecs;
 using PurchasingOrder.Domain.Specifications.Shared;
-using PurchasingOrder.Shared.Pagination;
 
 namespace PurchasingOrder.Application.PurchaseOrders.Queries.GetPurchaseOrders;
 

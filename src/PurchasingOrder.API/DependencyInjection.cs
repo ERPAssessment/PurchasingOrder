@@ -1,6 +1,6 @@
-﻿using HealthChecks.UI.Client;
+﻿using ERP.Shared.Exceptions.Handler;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using PurchasingOrder.Shared.Exceptions.Handler;
 using Serilog;
 
 namespace PurchasingOrder.API;

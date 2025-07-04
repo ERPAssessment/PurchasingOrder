@@ -1,4 +1,5 @@
-﻿using PurchasingOrder.Application.PurchaseOrders.Queries.GetGoods;
+﻿using ERP.Shared.Pagination;
+using PurchasingOrder.Application.PurchaseOrders.Queries.GetGoods;
 
 namespace PurchasingOrder.API.EndPoints;
 

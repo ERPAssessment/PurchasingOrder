@@ -1,6 +1,6 @@
-﻿using PurchasingOrder.Application.Extenstions;
+﻿using ERP.Shared.Pagination;
+using PurchasingOrder.Application.Extenstions;
 using PurchasingOrder.Domain.Abstractions.Repositories.PurchaseGoodRepo;
-using PurchasingOrder.Shared.Pagination;
 
 namespace PurchasingOrder.Application.PurchaseOrders.Queries.GetGoods;
 

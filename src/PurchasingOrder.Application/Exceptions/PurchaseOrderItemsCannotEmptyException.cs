@@ -1,4 +1,4 @@
-﻿using PurchasingOrder.Shared.Exceptions;
+﻿using ERP.Shared.Exceptions;
 
 namespace PurchasingOrder.Application.Exceptions;
 public class PurchaseOrderItemsCannotEmptyException : NotFoundException

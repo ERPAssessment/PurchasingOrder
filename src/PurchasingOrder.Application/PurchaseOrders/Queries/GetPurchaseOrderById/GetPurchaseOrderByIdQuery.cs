@@ -1,4 +1,6 @@
-﻿namespace PurchasingOrder.Application.PurchaseOrders.Queries.GetPurchaseOrderById;
+﻿using ERP.Shared.CQRS;
+
+namespace PurchasingOrder.Application.PurchaseOrders.Queries.GetPurchaseOrderById;
 
 public record GetPurchaseOrderByIdQuery(string Id)
     : IQuery<GetPurchaseOrderByIdResults>;
