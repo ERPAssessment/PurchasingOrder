@@ -19,8 +19,8 @@ public class PurchaseOrderDomainEvents
 
     // Assert
     var domainEvent = order.DomainEvents[0];
-    Assert.IsType<OrderCreatedEvent>(domainEvent);
-    var createdEvent = (OrderCreatedEvent)domainEvent;
+    Assert.IsType<OrderCreatedDomainEvent>(domainEvent);
+    var createdEvent = (OrderCreatedDomainEvent)domainEvent;
     Assert.Equal(order, createdEvent.Order);
   }
 
@@ -36,8 +36,8 @@ public class PurchaseOrderDomainEvents
 
     // Assert
     var domainEvent = order.DomainEvents[1];
-    Assert.IsType<OrderApprovedEvent>(domainEvent);
-    var approvedEvent = (OrderApprovedEvent)domainEvent;
+    Assert.IsType<OrderApprovedDomainEvent>(domainEvent);
+    var approvedEvent = (OrderApprovedDomainEvent)domainEvent;
     Assert.Equal(order, approvedEvent.Order);
   }
 
@@ -53,8 +53,8 @@ public class PurchaseOrderDomainEvents
 
     // Assert
     var domainEvent = order.DomainEvents[2];
-    Assert.IsType<OrderShippedEvent>(domainEvent);
-    var shippedEvent = (OrderShippedEvent)domainEvent;
+    Assert.IsType<OrderShippedDomainEvent>(domainEvent);
+    var shippedEvent = (OrderShippedDomainEvent)domainEvent;
     Assert.Equal(order, shippedEvent.Order);
   }
 
@@ -71,8 +71,8 @@ public class PurchaseOrderDomainEvents
 
     // Assert
     var domainEvent = order.DomainEvents[3];
-    Assert.IsType<OrderClosedEvent>(domainEvent);
-    var closedEvent = (OrderClosedEvent)domainEvent;
+    Assert.IsType<OrderClosedDomainEvent>(domainEvent);
+    var closedEvent = (OrderClosedDomainEvent)domainEvent;
     Assert.Equal(order, closedEvent.Order);
   }
 }

@@ -3,7 +3,7 @@ using PurchasingOrder.Domain.Abstractions.Repositories.PurchaseOrderRepo;
 
 namespace PurchasingOrder.Application.PurchaseOrders.Commands.ValidatePurchaseOrder;
 
-public class ValidatePurchaseOrderHandler(
+internal class ValidatePurchaseOrderCommandHandler(
   IReadPurchaseOrderRepository OrderRepository,
   IReadPurchaseGoodRepository GoodRepository) :
 ICommandHandler<ValidatePurchaseOrderCommand, ValidatePurchaseOrderResult>

@@ -56,6 +56,6 @@ public class PurchaseOrderCreationTests
     Assert.Equal(goodId, item.PurchaseGoodId);
     Assert.Equal(price, item.Price);
     Assert.Single(order.DomainEvents);
-    Assert.IsType<OrderCreatedEvent>(order.DomainEvents[0]);
+    Assert.IsType<OrderCreatedDomainEvent>(order.DomainEvents[0]);
   }
 }

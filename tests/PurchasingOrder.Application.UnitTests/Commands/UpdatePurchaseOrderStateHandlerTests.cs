@@ -6,12 +6,12 @@ namespace PurchasingOrder.Application.UnitTests.Commands;
 public class UpdatePurchaseOrderStateHandlerTests
 {
   private readonly Mock<IWritePurchaseOrderRepository> _repositoryMock;
-  private readonly UpdatePurchaseOrderStateHandler _handler;
+  private readonly UpdatePurchaseOrderStateCommandHandler _handler;
 
   public UpdatePurchaseOrderStateHandlerTests()
   {
     _repositoryMock = new Mock<IWritePurchaseOrderRepository>();
-    _handler = new UpdatePurchaseOrderStateHandler(_repositoryMock.Object);
+    _handler = new UpdatePurchaseOrderStateCommandHandler(_repositoryMock.Object);
   }
 
   private PurchaseOrder CreateTestOrder(PurchaseOrderNumber poNumber)
@@ -42,7 +42,7 @@ public class UpdatePurchaseOrderStateHandlerTests
     _repositoryMock.Verify(r => r.Update(It.Is<PurchaseOrder>(o =>
         o.PONumber == poNumber && o.DocumentState == PurchaseOrderState.Approved), It.IsAny<CancellationToken>()), Times.Once());
     Assert.Equal(PurchaseOrderState.Approved, order.DocumentState);
-    Assert.Contains(order.DomainEvents, e => e is OrderApprovedEvent && ((OrderApprovedEvent)e).Order == order);
+    Assert.Contains(order.DomainEvents, e => e is OrderApprovedDomainEvent && ((OrderApprovedDomainEvent)e).Order == order);
   }
 
   [Fact]
@@ -64,7 +64,7 @@ public class UpdatePurchaseOrderStateHandlerTests
     _repositoryMock.Verify(r => r.Update(It.Is<PurchaseOrder>(o =>
         o.PONumber == poNumber && o.DocumentState == PurchaseOrderState.BeingShipped), It.IsAny<CancellationToken>()), Times.Once());
     Assert.Equal(PurchaseOrderState.BeingShipped, order.DocumentState);
-    Assert.Contains(order.DomainEvents, e => e is OrderShippedEvent && ((OrderShippedEvent)e).Order == order);
+    Assert.Contains(order.DomainEvents, e => e is OrderShippedDomainEvent && ((OrderShippedDomainEvent)e).Order == order);
   }
 
   [Fact]
@@ -87,7 +87,7 @@ public class UpdatePurchaseOrderStateHandlerTests
     _repositoryMock.Verify(r => r.Update(It.Is<PurchaseOrder>(o =>
         o.PONumber == poNumber && o.DocumentState == PurchaseOrderState.Closed), It.IsAny<CancellationToken>()), Times.Once());
     Assert.Equal(PurchaseOrderState.Closed, order.DocumentState);
-    Assert.Contains(order.DomainEvents, e => e is OrderClosedEvent && ((OrderClosedEvent)e).Order == order);
+    Assert.Contains(order.DomainEvents, e => e is OrderClosedDomainEvent && ((OrderClosedDomainEvent)e).Order == order);
   }
 
   [Fact]
@@ -96,7 +96,7 @@ public class UpdatePurchaseOrderStateHandlerTests
     // Arrange
     var poNumber = PurchaseOrderNumber.Of("PO123");
     var command = new UpdatePurchaseOrderStateCommand(new UpdatePurchaseOrderStateDto("PO123", PurchaseOrderState.Approved));
-    _repositoryMock.Setup(r => r.GetByPurchaseNumber(poNumber, It.IsAny<CancellationToken>())).ReturnsAsync((PurchaseOrder)null);
+    _repositoryMock.Setup(r => r.GetByPurchaseNumber(poNumber, It.IsAny<CancellationToken>())).ReturnsAsync((PurchaseOrder)null!);
 
     // Act & Assert
     await Assert.ThrowsAsync<PurchaseOrderNotFoundException>(() => _handler.Handle(command, CancellationToken.None));

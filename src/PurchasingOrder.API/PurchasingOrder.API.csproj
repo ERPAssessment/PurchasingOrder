@@ -43,4 +43,7 @@
 		<Protobuf Include="Protos\Order.proto" GrpcServices="Server" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="PurchasingOrder.ArchitectureTests" />
+	</ItemGroup>
 </Project>

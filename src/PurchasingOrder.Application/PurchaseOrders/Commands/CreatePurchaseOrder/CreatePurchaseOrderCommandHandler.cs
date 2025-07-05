@@ -1,9 +1,8 @@
-﻿using ERP.Shared.CQRS;
-using PurchasingOrder.Domain.Abstractions.Repositories.PurchaseOrderRepo;
+﻿using PurchasingOrder.Domain.Abstractions.Repositories.PurchaseOrderRepo;
 
 namespace PurchasingOrder.Application.PurchaseOrders.Commands.CreatePurchaseOrder;
 
-internal class CreatePurchaseOrderHandler(
+internal class CreatePurchaseOrderCommandHandler(
   IWritePurchaseOrderRepository OrderRepository,
   IPurchaseItemSerialNumberGenerator SerialNumberGenerator,
   IPurchaseOrderNumberGenerator PurchaseOrderNumberGenerator

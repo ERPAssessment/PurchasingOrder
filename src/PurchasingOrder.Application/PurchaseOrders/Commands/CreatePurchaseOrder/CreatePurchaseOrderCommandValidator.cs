@@ -1,6 +1,6 @@
 ﻿namespace PurchasingOrder.Application.PurchaseOrders.Commands.CreatePurchaseOrder;
 
-public class CreatePurchaseOrderCommandValidator : AbstractValidator<CreatePurchaseOrderCommand>
+internal class CreatePurchaseOrderCommandValidator : AbstractValidator<CreatePurchaseOrderCommand>
 {
   public CreatePurchaseOrderCommandValidator()
   {

@@ -13,7 +13,7 @@ public class PurchaseOrderStateTransitionTests
     // Assert
     Assert.Equal(PurchaseOrderState.Approved, order.DocumentState);
     Assert.Equal(2, order.DomainEvents.Count);
-    Assert.IsType<OrderApprovedEvent>(order.DomainEvents[1]);
+    Assert.IsType<OrderApprovedDomainEvent>(order.DomainEvents[1]);
   }
 
   [Fact]
@@ -51,7 +51,7 @@ public class PurchaseOrderStateTransitionTests
     // Assert
     Assert.Equal(PurchaseOrderState.BeingShipped, order.DocumentState);
     Assert.Equal(3, order.DomainEvents.Count);
-    Assert.IsType<OrderShippedEvent>(order.DomainEvents[2]);
+    Assert.IsType<OrderShippedDomainEvent>(order.DomainEvents[2]);
   }
 
   [Fact]
@@ -90,7 +90,7 @@ public class PurchaseOrderStateTransitionTests
     // Assert
     Assert.Equal(PurchaseOrderState.Closed, order.DocumentState);
     Assert.Equal(4, order.DomainEvents.Count);
-    Assert.IsType<OrderClosedEvent>(order.DomainEvents[3]);
+    Assert.IsType<OrderClosedDomainEvent>(order.DomainEvents[3]);
   }
 
   [Fact]

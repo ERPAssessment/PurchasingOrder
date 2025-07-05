@@ -4,7 +4,7 @@ using PurchasingOrder.Domain.Abstractions.Repositories.PurchaseGoodRepo;
 
 namespace PurchasingOrder.Application.PurchaseOrders.Queries.GetGoods;
 
-public class GetPurchaseOrdersHandler(IReadPurchaseGoodRepository PurchaseGoodRepository)
+internal class GetPurchaseOrdersQueryHandler(IReadPurchaseGoodRepository PurchaseGoodRepository)
     : IQueryHandler<GetGoodsQuery, GetGoodsResult>
 {
   public async Task<GetGoodsResult> Handle(GetGoodsQuery query, CancellationToken cancellationToken)

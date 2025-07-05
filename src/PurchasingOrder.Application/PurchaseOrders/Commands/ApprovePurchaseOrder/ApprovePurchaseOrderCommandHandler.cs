@@ -2,7 +2,7 @@
 
 namespace PurchasingOrder.Application.PurchaseOrders.Commands.ApprovePurchaseOrder;
 
-internal class ApprovePurchaseOrderHandler(IWritePurchaseOrderRepository OrderRepository) :
+internal class ApprovePurchaseOrderCommandHandler(IWritePurchaseOrderRepository OrderRepository) :
    ICommandHandler<ApprovePurchaseOrderCommand, ApprovePurchaseOrderResult>
 {
   public async Task<ApprovePurchaseOrderResult> Handle(ApprovePurchaseOrderCommand request, CancellationToken cancellationToken)

@@ -2,7 +2,7 @@
 
 namespace PurchasingOrder.Application.PurchaseOrders.Commands.ChangePurchaseOrderStatus;
 
-internal class UpdatePurchaseOrderStateHandler(IWritePurchaseOrderRepository OrderRepository) :
+internal class UpdatePurchaseOrderStateCommandHandler(IWritePurchaseOrderRepository OrderRepository) :
    ICommandHandler<UpdatePurchaseOrderStateCommand, UpdatePurchaseOrderStateResult>
 {
   public async Task<UpdatePurchaseOrderStateResult> Handle(UpdatePurchaseOrderStateCommand request, CancellationToken cancellationToken)

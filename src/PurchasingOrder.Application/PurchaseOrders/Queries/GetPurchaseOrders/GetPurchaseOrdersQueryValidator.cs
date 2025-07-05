@@ -2,7 +2,7 @@
 
 namespace PurchasingOrder.Application.PurchaseOrders.Queries.GetPurchaseOrders;
 
-public class GetPurchaseOrdersQueryValidator : AbstractValidator<GetPurchaseOrdersQuery>
+internal class GetPurchaseOrdersQueryValidator : AbstractValidator<GetPurchaseOrdersQuery>
 {
   public GetPurchaseOrdersQueryValidator()
   {

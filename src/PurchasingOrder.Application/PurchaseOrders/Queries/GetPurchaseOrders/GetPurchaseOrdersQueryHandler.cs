@@ -7,7 +7,7 @@ using PurchasingOrder.Domain.Specifications.Shared;
 
 namespace PurchasingOrder.Application.PurchaseOrders.Queries.GetPurchaseOrders;
 
-public class GetPurchaseOrdersHandler(IReadPurchaseOrderRepository purchaseOrderRepository)
+internal class GetPurchaseOrdersQueryHandler(IReadPurchaseOrderRepository purchaseOrderRepository)
     : IQueryHandler<GetPurchaseOrdersQuery, GetPurchaseOrdersResults>
 {
   public async Task<GetPurchaseOrdersResults> Handle(GetPurchaseOrdersQuery query, CancellationToken cancellationToken)

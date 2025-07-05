@@ -1,10 +1,9 @@
-﻿using ERP.Shared.CQRS;
-using PurchasingOrder.Application.Extenstions;
+﻿using PurchasingOrder.Application.Extenstions;
 using PurchasingOrder.Domain.Abstractions.Repositories.PurchaseOrderRepo;
 
 namespace PurchasingOrder.Application.PurchaseOrders.Queries.GetPurchaseOrderById;
 
-public class GetPurchaseOrderByIdHandler(IReadPurchaseOrderRepository orderRepository)
+internal class GetPurchaseOrderByIdQueryHandler(IReadPurchaseOrderRepository orderRepository)
     : IQueryHandler<GetPurchaseOrderByIdQuery, GetPurchaseOrderByIdResults>
 {
   public async Task<GetPurchaseOrderByIdResults> Handle(GetPurchaseOrderByIdQuery query, CancellationToken cancellationToken)

@@ -8,14 +8,14 @@ public class CreatePurchaseOrderHandlerTests
   private readonly Mock<IWritePurchaseOrderRepository> _repositoryMock;
   private readonly Mock<IPurchaseItemSerialNumberGenerator> _serialNumberGeneratorMock;
   private readonly Mock<IPurchaseOrderNumberGenerator> _poNumberGeneratorMock;
-  private readonly CreatePurchaseOrderHandler _handler;
+  private readonly CreatePurchaseOrderCommandHandler _handler;
 
   public CreatePurchaseOrderHandlerTests()
   {
     _repositoryMock = new Mock<IWritePurchaseOrderRepository>();
     _serialNumberGeneratorMock = new Mock<IPurchaseItemSerialNumberGenerator>();
     _poNumberGeneratorMock = new Mock<IPurchaseOrderNumberGenerator>();
-    _handler = new CreatePurchaseOrderHandler(_repositoryMock.Object, _serialNumberGeneratorMock.Object, _poNumberGeneratorMock.Object);
+    _handler = new CreatePurchaseOrderCommandHandler(_repositoryMock.Object, _serialNumberGeneratorMock.Object, _poNumberGeneratorMock.Object);
   }
 
   [Fact]

@@ -8,13 +8,13 @@ namespace PurchasingOrder.Application.UnitTests.Commands
   {
     private readonly Mock<IReadPurchaseOrderRepository> _orderRepositoryMock;
     private readonly Mock<IReadPurchaseGoodRepository> _goodRepositoryMock;
-    private readonly ValidatePurchaseOrderHandler _handler;
+    private readonly ValidatePurchaseOrderCommandHandler _handler;
 
     public ValidatePurchaseOrderHandlerTests()
     {
       _orderRepositoryMock = new Mock<IReadPurchaseOrderRepository>();
       _goodRepositoryMock = new Mock<IReadPurchaseGoodRepository>();
-      _handler = new ValidatePurchaseOrderHandler(_orderRepositoryMock.Object, _goodRepositoryMock.Object);
+      _handler = new ValidatePurchaseOrderCommandHandler(_orderRepositoryMock.Object, _goodRepositoryMock.Object);
     }
 
     [Fact]
@@ -26,7 +26,7 @@ namespace PurchasingOrder.Application.UnitTests.Commands
           "PO123",
           new List<ValidatePOItem> { new ValidatePOItem(Guid.NewGuid().ToString(), "GC001", 100.0m) }));
 
-      _orderRepositoryMock.Setup(r => r.GetByPurchaseOrderNumber(poNumber, It.IsAny<CancellationToken>())).ReturnsAsync((PurchaseOrder)null);
+      _orderRepositoryMock.Setup(r => r.GetByPurchaseOrderNumber(poNumber, It.IsAny<CancellationToken>())).ReturnsAsync((PurchaseOrder)null!);
 
       // Act
       var result = await _handler.Handle(command, CancellationToken.None);

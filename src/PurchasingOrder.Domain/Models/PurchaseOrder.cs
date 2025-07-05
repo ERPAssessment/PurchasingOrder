@@ -29,7 +29,7 @@ public class PurchaseOrder : Aggregate<PurchaseOrderId>
     };
 
     order.AddPurchaseItem(serialNumber, goodId, price);
-    order.AddDomainEvent(new OrderCreatedEvent(order));
+    order.AddDomainEvent(new OrderCreatedDomainEvent(order));
 
     return order;
   }
@@ -38,7 +38,7 @@ public class PurchaseOrder : Aggregate<PurchaseOrderId>
   {
     CheckCanApprove();
     DocumentState = PurchaseOrderState.Approved;
-    AddDomainEvent(new OrderApprovedEvent(this));
+    AddDomainEvent(new OrderApprovedDomainEvent(this));
   }
 
   public void Ship()
@@ -46,7 +46,7 @@ public class PurchaseOrder : Aggregate<PurchaseOrderId>
     CheckCanShip();
 
     DocumentState = PurchaseOrderState.BeingShipped;
-    AddDomainEvent(new OrderShippedEvent(this));
+    AddDomainEvent(new OrderShippedDomainEvent(this));
   }
 
   public void Close()
@@ -54,7 +54,7 @@ public class PurchaseOrder : Aggregate<PurchaseOrderId>
     CheckCanClose();
 
     DocumentState = PurchaseOrderState.Closed;
-    AddDomainEvent(new OrderClosedEvent(this));
+    AddDomainEvent(new OrderClosedDomainEvent(this));
   }
 
   public void Deactivate()

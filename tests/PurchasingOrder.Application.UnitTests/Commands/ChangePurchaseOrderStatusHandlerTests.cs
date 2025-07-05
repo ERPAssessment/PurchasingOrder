@@ -5,12 +5,12 @@ namespace PurchasingOrder.Application.UnitTests.Commands;
 public class ChangePurchaseOrderStatusHandlerTests
 {
   private readonly Mock<IWritePurchaseOrderRepository> _repositoryMock;
-  private readonly ChangePurchaseOrderStatusHandler _handler;
+  private readonly ChangePurchaseOrderStatusCommandHandler _handler;
 
   public ChangePurchaseOrderStatusHandlerTests()
   {
     _repositoryMock = new Mock<IWritePurchaseOrderRepository>();
-    _handler = new ChangePurchaseOrderStatusHandler(_repositoryMock.Object);
+    _handler = new ChangePurchaseOrderStatusCommandHandler(_repositoryMock.Object);
   }
 
   [Fact]
@@ -62,7 +62,7 @@ public class ChangePurchaseOrderStatusHandlerTests
     // Arrange
     var orderId = PurchaseOrderId.Of(Guid.NewGuid());
     var command = new ChangePurchaseOrderStatusCommand(new ChangePurchaseOrderStatusDto(orderId.Value, true));
-    _repositoryMock.Setup(r => r.GetById(orderId, It.IsAny<CancellationToken>())).ReturnsAsync((PurchaseOrder)null);
+    _repositoryMock.Setup(r => r.GetById(orderId, It.IsAny<CancellationToken>())).ReturnsAsync((PurchaseOrder)null!);
 
     // Act & Assert
     await Assert.ThrowsAsync<PurchaseOrderNotFoundException>(() => _handler.Handle(command, CancellationToken.None));

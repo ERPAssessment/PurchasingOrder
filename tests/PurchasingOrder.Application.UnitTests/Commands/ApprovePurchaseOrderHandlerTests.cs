@@ -4,12 +4,12 @@ namespace PurchasingOrder.Application.UnitTests.Commands;
 public class ApprovePurchaseOrderHandlerTests
 {
   private readonly Mock<IWritePurchaseOrderRepository> _repositoryMock;
-  private readonly ApprovePurchaseOrderHandler _handler;
+  private readonly ApprovePurchaseOrderCommandHandler _handler;
 
   public ApprovePurchaseOrderHandlerTests()
   {
     _repositoryMock = new Mock<IWritePurchaseOrderRepository>();
-    _handler = new ApprovePurchaseOrderHandler(_repositoryMock.Object);
+    _handler = new ApprovePurchaseOrderCommandHandler(_repositoryMock.Object);
   }
 
   [Fact]
@@ -30,7 +30,7 @@ public class ApprovePurchaseOrderHandlerTests
     _repositoryMock.Verify(r => r.Update(It.Is<PurchaseOrder>(o =>
         o.Id == orderId && o.DocumentState == PurchaseOrderState.Approved), It.IsAny<CancellationToken>()), Times.Once());
     Assert.Equal(PurchaseOrderState.Approved, order.DocumentState);
-    Assert.Contains(order.DomainEvents, e => e is OrderApprovedEvent && ((OrderApprovedEvent)e).Order == order);
+    Assert.Contains(order.DomainEvents, e => e is OrderApprovedDomainEvent && ((OrderApprovedDomainEvent)e).Order == order);
   }
 
   [Fact]
