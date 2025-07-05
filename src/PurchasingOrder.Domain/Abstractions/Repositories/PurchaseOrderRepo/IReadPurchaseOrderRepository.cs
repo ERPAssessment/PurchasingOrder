@@ -8,4 +8,6 @@ public interface IReadPurchaseOrderRepository
   Task<IEnumerable<PurchaseOrder>> FindAsync(Specification<PurchaseOrder> specification, int pageIndex, int pageSize, CancellationToken cancellationToken);
   Task<IEnumerable<PurchaseOrder>> GetPagedPurchaseOrders(int pageIndex, int pageSize, CancellationToken cancellationToken);
   Task<long> GetTotalCountAsync(CancellationToken cancellationToken);
+  Task<PurchaseOrder?> GetByPurchaseOrderNumber(PurchaseOrderNumber PoNumber, CancellationToken cancellationToken);
+
 }

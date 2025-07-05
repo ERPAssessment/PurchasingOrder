@@ -7,6 +7,15 @@ internal class ReadPurchaseGoodRepository
   (IApplicationDbContext dbContext)
   : IReadPurchaseGoodRepository
 {
+  public async Task<PurchaseGood?> GetByPurchaseGoodByCode(PurchaseGoodCode PgCode, CancellationToken cancellationToken)
+  {
+    var good = await dbContext.PurchaseGoods
+                      .AsNoTracking()
+                      .FirstOrDefaultAsync(po => po.Code == PgCode, cancellationToken);
+
+    return good;
+  }
+
   public async Task<List<PurchaseGood>> GetPagedGoodsAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
   {
     return await dbContext.PurchaseGoods

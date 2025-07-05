@@ -50,4 +50,14 @@ internal class ReadPurchaseOrderRepository
                   .AsNoTracking()
                   .LongCountAsync(cancellationToken);
   }
+
+  public async Task<PurchaseOrder?> GetByPurchaseOrderNumber(PurchaseOrderNumber PoNumber, CancellationToken cancellationToken)
+  {
+    var order = await dbContext.PurchaseOrders
+                      .AsNoTracking()
+                      .Include(o => o.PurchaseItems)
+                      .FirstOrDefaultAsync(po => po.PONumber == PoNumber, cancellationToken);
+
+    return order;
+  }
 }
