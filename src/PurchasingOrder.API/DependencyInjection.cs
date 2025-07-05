@@ -1,8 +1,10 @@
 ﻿using ERP.Shared.Exceptions.Handler;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using PurchasingOrder.API.GRPCServices;
 using Serilog;
+
 
 namespace PurchasingOrder.API;
 
@@ -15,10 +17,10 @@ public static class DependencyInjection
 
     services.AddCarter();
     services.AddGrpc();
+    services.AddGrpcHealthChecks()
+                .AddCheck("grpcHealth", () => HealthCheckResult.Healthy());
 
     services.AddExceptionHandler<CustomExceptionHandler>();
-    services.AddHealthChecks()
-        .AddSqlServer(configuration.GetConnectionString("Database")!);
 
     Log.Logger = new LoggerConfiguration()
         .MinimumLevel.Debug()
@@ -45,6 +47,7 @@ Microsoft.OpenApi.OpenApiSpecVersion.OpenApi2_0);
     app.MapCarter();
 
     app.MapGrpcService<OrderProtoServiceImp>();
+    app.MapGrpcHealthChecksService().AllowAnonymous();
 
     app.UseExceptionHandler(options => { });
     app.UseHealthChecks("/health",

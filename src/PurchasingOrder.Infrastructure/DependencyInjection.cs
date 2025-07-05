@@ -10,6 +10,7 @@ using PurchasingOrder.Infrastructure.Data.Generators.OrderItem;
 using PurchasingOrder.Infrastructure.Data.Generators.OrderNumberGenerator;
 using PurchasingOrder.Infrastructure.Data.Interceptors;
 using PurchasingOrder.Infrastructure.Data.Repositories;
+using PurchasingOrder.Infrastructure.DependenciesInjection;
 
 namespace PurchasingOrder.Infrastructure;
 
@@ -39,6 +40,7 @@ public static class DependencyInjection
 
     services.AddSingleton<IPurchaseItemSerialNumberGenerator, GuidPurchaseItemSerialNumberGenerator>();
     services.AddScoped<IPurchaseOrderNumberGenerator, PurchaseOrderNumberGenerator>();
+    services.AddDIHealthChecks(configuration);
 
     return services;
   }
