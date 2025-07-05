@@ -1,14 +1,13 @@
 services:
-  
-  purchasingorderDB:
-    container_name: purchasingorderDB
+  ErpDb:
+    container_name: ErpDb
     environment:       
       - ACCEPT_EULA=Y
       - SA_PASSWORD=StrongP@ssw0rd123
     restart: always
     ports:
-      - "1401:1433" 
-  
+      - "1433:1433" 
+   
   messagebroker:
     container_name: MqMessageBroker
     hostname: erp-mq
@@ -21,18 +20,24 @@ services:
       - "15672:15672"
 
   purchasingorder.api:
+    container_name: purchasingorderapi
     environment:
+      - ConnectionStrings__Database=Server=ErpDb;Database=PurchasingOrderDb;User Id=sa;Password=StrongP@ssw0rd123;Encrypt=False;TrustServerCertificate=True
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
+      - MessageBroker__Host=amqp://ecommerce-mq:5672
+      - MessageBroker__UserName=guest
+      - MessageBroker__Password=guest
+      - FeatureManagement__POTimestampGeneration=false
+
     ports:
-      - "8080"
-      - "8081"
+      - "6000:8080"
+      - "6060:8081"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
-      - ./src/purchasingorder.api/appsettings.Development.json:/app/appsettings.Development.json:rw
-
+      - ./src/purchasingorder.api/appsettings.Development.json:/app/appsettings.Development.json:r
     depends_on:
-      - purchasingorderDB
+      - ErpDb
       - messagebroker

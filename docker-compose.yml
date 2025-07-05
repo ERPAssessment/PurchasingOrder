@@ -1,6 +1,6 @@
 services:
-  
-  purchasingorderDB:
+
+  ErpDb:
     image: mcr.microsoft.com/mssql/server:2022-latest
 
   messagebroker:
@@ -9,6 +9,5 @@ services:
   purchasingorder.api:
     image: ${DOCKER_REGISTRY-}purchasingorderapi
     build:
-      context: .
+      context: ./
       dockerfile: src/PurchasingOrder.API/Dockerfile
-
