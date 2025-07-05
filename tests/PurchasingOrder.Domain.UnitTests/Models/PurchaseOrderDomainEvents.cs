@@ -1,8 +1,4 @@
-﻿using PurchasingOrder.Domain.Events;
-using PurchasingOrder.Domain.Models;
-using PurchasingOrder.Domain.ValueObjects;
-using static PurchasingOrder.Domain.UnitTests.ModelData.DataSet;
-
+﻿
 namespace PurchasingOrder.Domain.UnitTests.Models;
 
 public class PurchaseOrderDomainEvents

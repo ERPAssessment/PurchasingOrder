@@ -27,4 +27,8 @@
     <Folder Include="PurchaseOrders\EventHandlers\Domain\" />
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="PurchasingOrder.Application.UnitTests" />
+	</ItemGroup>
+
 </Project>

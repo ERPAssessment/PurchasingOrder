@@ -1,10 +1,9 @@
-﻿namespace PurchasingOrder.Domain.UnitTests.ModelData;
+﻿namespace PurchasingOrder.Application.UnitTests.ModelData;
 
 public static class DataSet
 {
-  public static PurchaseOrder CreateTestOrder()
+  public static PurchaseOrder CreateTestOrder(PurchaseOrderId id)
   {
-    var id = PurchaseOrderId.Of(Guid.NewGuid());
     var poNumber = PurchaseOrderNumber.Of("PO123");
     var issuedDate = DateTime.Now;
     var serialNumber = PurchaseItemSerialNumber.Of("SN001");

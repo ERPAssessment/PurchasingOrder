@@ -1,8 +1,4 @@
-﻿using PurchasingOrder.Domain.Exceptions;
-using PurchasingOrder.Domain.ValueObjects;
-using static PurchasingOrder.Domain.UnitTests.ModelData.DataSet;
-
-namespace PurchasingOrder.Domain.UnitTests.Models;
+﻿namespace PurchasingOrder.Domain.UnitTests.Models;
 
 public class PurchaseOrderItemManagementTests
 {

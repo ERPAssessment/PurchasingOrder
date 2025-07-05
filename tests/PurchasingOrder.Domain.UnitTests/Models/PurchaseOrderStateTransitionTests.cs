@@ -1,9 +1,4 @@
-﻿using PurchasingOrder.Domain.Enums;
-using PurchasingOrder.Domain.Events;
-using PurchasingOrder.Domain.Exceptions;
-using static PurchasingOrder.Domain.UnitTests.ModelData.DataSet;
-
-namespace PurchasingOrder.Domain.UnitTests.Models;
+﻿namespace PurchasingOrder.Domain.UnitTests.Models;
 
 public class PurchaseOrderStateTransitionTests
 {

@@ -1,0 +1,11 @@
+﻿global using FluentValidation;
+global using Moq;
+global using PurchasingOrder.Application.Exceptions;
+global using PurchasingOrder.Application.PurchaseOrders.Commands.ApprovePurchaseOrder;
+global using PurchasingOrder.Domain.Abstractions.Repositories.PurchaseOrderRepo;
+global using PurchasingOrder.Domain.Enums;
+global using PurchasingOrder.Domain.Events;
+global using PurchasingOrder.Domain.Exceptions;
+global using PurchasingOrder.Domain.Models;
+global using PurchasingOrder.Domain.ValueObjects;
+global using static PurchasingOrder.Application.UnitTests.ModelData.DataSet;

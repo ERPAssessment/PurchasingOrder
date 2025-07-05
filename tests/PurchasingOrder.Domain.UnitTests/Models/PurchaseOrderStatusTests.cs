@@ -1,7 +1,4 @@
-﻿using PurchasingOrder.Domain.Enums;
-using static PurchasingOrder.Domain.UnitTests.ModelData.DataSet;
-
-namespace PurchasingOrder.Domain.UnitTests.Models;
+﻿namespace PurchasingOrder.Domain.UnitTests.Models;
 
 public class PurchaseOrderStatusTests
 {
