@@ -1,3 +1,4 @@
+using ERP.Shared.Logging;
 using PurchasingOrder.API;
 using PurchasingOrder.Application;
 using PurchasingOrder.Infrastructure;
@@ -12,7 +13,7 @@ builder.Services
     .AddInfrastructureServices(builder.Configuration)
     .AddApiServices(builder.Configuration);
 
-builder.Host.UseSerilog();
+builder.Host.UseSerilog(SeriLogger.Configure);
 
 var app = builder.Build();
 

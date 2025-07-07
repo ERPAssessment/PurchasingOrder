@@ -1,13 +1,14 @@
 services:
   ErpDb:
     container_name: ErpDb
-    environment:       
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=StrongP@ssw0rd123
+    environment:
+      - ACCEPT_EULA='Y'
+      - MSSQL_SA_PASSWORD=StrongP@ssw0rd123
+      - MSSQL_TCP_PORT= 1433
     restart: always
     ports:
-      - "1433:1433" 
-   
+      - "11433:1433"
+
   messagebroker:
     container_name: MqMessageBroker
     hostname: erp-mq
@@ -16,21 +17,21 @@ services:
       - RABBITMQ_DEFAULT_PASS=guest
     restart: always
     ports:
-      - "5672:5672"
-      - "15672:15672"
+      - "5673:5672"
+      - "15673:15672"
 
   purchasingorder.api:
     container_name: purchasingorderapi
     environment:
-      - ConnectionStrings__Database=Server=ErpDb;Database=PurchasingOrderDb;User Id=sa;Password=StrongP@ssw0rd123;Encrypt=False;TrustServerCertificate=True
+      - ConnectionStrings:Database=Server=ErpDb;Database=PurchasingOrderDb;User Id=sa;Password=StrongP@ssw0rd123;Encrypt=False;TrustServerCertificate=True
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
-      - MessageBroker__Host=amqp://ecommerce-mq:5672
-      - MessageBroker__UserName=guest
-      - MessageBroker__Password=guest
-      - FeatureManagement__POTimestampGeneration=false
-
+      - MessageBroker:Host=amqp://erp-mq:5672
+      - MessageBroker:UserName=guest
+      - MessageBroker:Password=guest
+      - FeatureManagement:POTimestampGeneration=false
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     ports:
       - "6000:8080"
       - "6060:8081"
@@ -41,3 +42,34 @@ services:
     depends_on:
       - ErpDb
       - messagebroker
+
+  elasticsearch:
+    container_name: elasticsearch
+    ports:
+    - 9200:9200
+    # volumes:
+    # - elasticsearch-data:/usr/share/elasticsearch/data
+    environment:
+    # - xpack.monitoring.enabled=true
+    # - xpack.watcher.enabled=false
+    - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+    - discovery.type=single-node
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s http://localhost:9200/_cluster/health | grep -vq '\"status\":\"red\"'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  kibana:
+    container_name: kibana
+    ports:
+    - 5601:5601
+    depends_on:
+        elasticsearch:
+          condition: service_healthy
+    environment:
+    - ELASTICSEARCH_URL=http://localhost:9200
+    - xpack.security.enabled= false
+
+
+  
