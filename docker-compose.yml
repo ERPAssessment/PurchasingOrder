@@ -19,6 +19,3 @@ services:
 
   kibana:
     image: docker.elastic.co/kibana/kibana:7.9.2
-
-volumes:
-  elasticsearch-data:  

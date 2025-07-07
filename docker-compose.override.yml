@@ -47,16 +47,12 @@ services:
     container_name: elasticsearch
     ports:
     - 9200:9200
-    # volumes:
-    # - elasticsearch-data:/usr/share/elasticsearch/data
     environment:
-    # - xpack.monitoring.enabled=true
-    # - xpack.watcher.enabled=false
     - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
     - discovery.type=single-node
     healthcheck:
       test: ["CMD-SHELL", "curl -s http://localhost:9200/_cluster/health | grep -vq '\"status\":\"red\"'"]
-      interval: 10s
+      interval: 20s
       timeout: 5s
       retries: 5
 
