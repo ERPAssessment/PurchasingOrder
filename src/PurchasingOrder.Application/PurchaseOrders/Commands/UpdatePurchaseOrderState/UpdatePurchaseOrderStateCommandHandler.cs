@@ -31,7 +31,7 @@ internal class UpdatePurchaseOrderStateCommandHandler(IWritePurchaseOrderReposit
       Domain.Enums.PurchaseOrderState.Approved => order.Approve,
       Domain.Enums.PurchaseOrderState.BeingShipped => order.Ship,
       Domain.Enums.PurchaseOrderState.Closed => order.Close,
-      _ => throw new InvalidOperationException($"Invalid state transition from {order.DocumentState} to {Dto.State}.")
+      _ => throw new ValidationException($"Invalid state transition from {order.DocumentState} to {Dto.State}.")
     };
 
     stateAction.Invoke();
